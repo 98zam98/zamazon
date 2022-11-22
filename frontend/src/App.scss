@@ -1,0 +1,153 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url("https://picsum.photos/0?random=10");
+  background-position: center;
+  // background-size:cover;
+  background-repeat: no-repeat;
+}
+
+$trans_time:500ms;
+
+:root{
+--amazon_color_1: hsla(0, 0%, 100%, 0.658);
+--amazon_color_2: hsl(0, 2%, 18%);
+--amazon_color_3: wheat;
+
+
+--dark_color_1: hsla(0, 0%, 0%, 0.658);
+--dark_color_2: hsl(0, 0%, 0%);
+--dark_color_3: hsl(0, 0%, 100%);
+
+}
+
+//================================================================================
+
+
+// both themes will have the same design, but colors will be made in a different class 
+.App {
+  height: 100vh;
+
+      // children 
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    // padding: 1vh;
+  }
+
+  .theme_buttons {
+    padding-right: 2vh;
+    display: flex;
+    justify-content: space-between;
+    gap: 2vw;
+    
+      // children 
+    button:hover
+    {
+      scale: 1.32;
+      //  transition settings
+      transition-property: scale; 
+      transition-duration: $trans_time; 
+      transition-timing-function: ease-in-out; 
+
+    }
+  }
+
+  header a {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding-left: 2vw;
+    &:hover
+    {
+      cursor: pointer;
+      scale: 1.2;
+      //  transition settings
+      transition-property: scale; 
+      transition-duration: $trans_time; 
+      transition-timing-function: ease-in-out; 
+
+    }
+    &:not(:hover)
+    {
+      cursor: pointer;
+      scale: 1;
+      //  transition settings
+      transition-property: scale; 
+      transition-duration: $trans_time; 
+      transition-timing-function: ease-in-out; 
+    }
+  }
+
+}
+
+// both themes will have the same design, but opposite colors, so we made them using mixin 
+@mixin theme_app($theme1, $theme2) {
+  .#{$theme1}_app {
+    background: var(--#{$theme1}_color_1);
+    //  transition settings
+    transition-property: background-color; 
+    transition-duration: $trans_time; 
+    transition-timing-function: ease-in-out; 
+
+      // children 
+    header {
+      background: var(--#{$theme1}_color_2);
+      //  transition settings
+      transition-property: background-color; 
+      transition-duration: $trans_time; 
+      transition-timing-function: ease-in-out; 
+
+      // children 
+
+      .#{$theme1}_theme_button {
+        border-radius: 5px;
+        border: solid 2px var(--#{$theme1}_color_3) ;
+        color: var(--#{$theme1}_color_2);
+        background-color: var(--#{$theme1}_color_3);
+        scale: 1.1;
+        //  transition settings
+        transition-property: scale; 
+        transition-duration: $trans_time; 
+        transition-timing-function: ease-in-out; 
+      }
+      .#{$theme2}_theme_button {
+        border-radius: 5px;
+        border: solid 2px var(--#{$theme2}_color_3) ;
+        color: var(--#{$theme2}_color_3);
+        background-color: var(--#{$theme2}_color_2);
+        scale: 1;
+        //  transition settings
+        transition-property: scale; 
+        transition-duration: $trans_time; 
+        transition-timing-function: ease-in-out; 
+      }
+      a {
+        color: var(--#{$theme1}_color_3);
+        //  transition settings
+        transition-property: color; 
+        transition-duration: $trans_time; 
+        transition-timing-function: ease-in-out; 
+      }
+    }
+  }
+}
+
+// generating the dark theme
+@include theme_app(dark,amazon);
+
+// generating the amazon theme
+@include theme_app(amazon,dark);
