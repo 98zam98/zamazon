@@ -6,6 +6,10 @@ import data from './data';
 import { useAppDispatch, useAppSelector } from './state/hooks';
 import themeSlice from './state/reducer/themeSlice';
 
+import { useRoutes } from "react-router-dom";
+import Home from './comp/Home';
+import ProductScreen from './comp/ProductScreen';
+
 const App: FC = () => {
 
   // this  AppTheme will be used to change the theme of the app  
@@ -14,10 +18,37 @@ const App: FC = () => {
   const dispatch = useAppDispatch()
   // end of state 
 
+  // routing
+
+  let zRoutes = useRoutes([
+    {
+      path: '/',
+      element: <Home />
+    },
+    {
+      path: '/product/:slug',
+      element: <ProductScreen />
+    },
+    // {
+    //   path:'/About' ,
+    //   element:<About />
+    // },
+    // {
+    //   path:'/Post/*' ,
+    //   element:<Context.Provider value={{Post, setPost}} ><PostRoute /></Context.Provider>
+    // },
+    // {
+    //   path:'*' ,
+    //   element:<Missing />
+    // }
+  ]);
+
   return (
     <div className={`${AppTheme}_app App`} >
-      <Head/>
-      <Mainer/>
+      <Head />
+      {
+        zRoutes
+      }
     </div>
   );
 }

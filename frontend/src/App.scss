@@ -20,11 +20,6 @@ body {
 
 $trans_time: 500ms;
 
-$gap_change_media : .5vw;
-@media all and (max-width:500px)
-{
-  $gap_change_media : 3.5vw;
-}
 :root {
   --amazon_color_1: hsla(0, 0%, 100%, 0.87);
   --amazon_color_2: hsl(0, 2%, 18%);
@@ -59,11 +54,15 @@ $gap_change_media : .5vw;
       padding-right: 2vh;
       display: flex;
       justify-content: space-between;
-      gap: 1.5vw;
+      gap: .7vw;
 
       @media all and (max-width:500px)
       {
         gap: 3.5vw;
+      }
+      @media all and (max-width:1000px)
+      {
+        gap: 1.5vw;
       }
       // children 
       button:hover {
@@ -106,6 +105,7 @@ $gap_change_media : .5vw;
   main {
     padding: 1rem;
 
+
     // children
 
     .products {
@@ -116,16 +116,18 @@ $gap_change_media : .5vw;
       // children
 
       .product {
-        scale: 1;
         margin: 1rem;
-        //  transition settings
-        transition-property: scale;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
-
         &:hover
         {
           scale: 1.05;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
+        &:not(:hover)
+        {
+          scale: 1;
           //  transition settings
           transition-property: scale;
           transition-duration: $trans_time;
