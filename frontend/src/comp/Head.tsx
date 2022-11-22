@@ -1,25 +1,14 @@
-import React, {FC} from 'react'
-import { CaseReducerActions } from '@reduxjs/toolkit';
-import { useAppDispatch, useAppSelector } from '../state/hooks';
-import themeSlice , {stateType} from '../state/reducer/themeSlice';
-
+import React, { FC } from 'react'
 import { Link } from "react-router-dom";
+import Theme_button from './Theme_button';
 
-const Head:FC = () => {
-  
-  // this  AppTheme will be used to change the theme of the app  
-  // s here is short for state 
-  const AppTheme = useAppSelector(s => s.themeState.theme);
-  const dispatch = useAppDispatch()
-  // end of state 
-
-  
+const Head: FC = () => {
   return (
     <header className="App-header">
       <Link to="/">ZAMAZON</Link>
       <div className="theme_buttons">
-        <button className={`amazon_theme_button`} onClick={() => dispatch(themeSlice.actions.amazon())} >amazon</button>
-        <button className={`dark_theme_button`} onClick={() => dispatch(themeSlice.actions.dark())} >dark</button>
+        <Theme_button theme={"amazon"} />
+        <Theme_button theme={"dark"} />
       </div>
     </header>
   )
