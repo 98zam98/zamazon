@@ -15,20 +15,25 @@ body {
   background: url("https://picsum.photos/0?random=10");
   background-position: center;
   // background-size:cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 
-$trans_time:500ms;
+$trans_time: 500ms;
 
-:root{
---amazon_color_1: hsla(0, 0%, 100%, 0.658);
---amazon_color_2: hsl(0, 2%, 18%);
---amazon_color_3: wheat;
+$gap_change_media : .5vw;
+@media all and (max-width:500px)
+{
+  $gap_change_media : 3.5vw;
+}
+:root {
+  --amazon_color_1: hsla(0, 0%, 100%, 0.87);
+  --amazon_color_2: hsl(0, 2%, 18%);
+  --amazon_color_3: hsl(39, 100%, 75%);
 
 
---dark_color_1: hsla(0, 0%, 0%, 0.658);
---dark_color_2: hsl(0, 0%, 0%);
---dark_color_3: hsl(0, 0%, 100%);
+  --dark_color_1: hsla(0, 0%, 0%, 0.658);
+  --dark_color_2: hsl(0, 0%, 0%);
+  --dark_color_3: hsl(0, 0%, 100%);
 
 }
 
@@ -37,58 +42,108 @@ $trans_time:500ms;
 
 // both themes will have the same design, but colors will be made in a different class 
 .App {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 
-      // children 
+  // children 
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 7vh;
     // padding: 1vh;
-  }
 
-  .theme_buttons {
-    padding-right: 2vh;
-    display: flex;
-    justify-content: space-between;
-    gap: 2vw;
-    
+    // children
+
+    .theme_buttons {
+      padding-right: 2vh;
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5vw;
+
+      @media all and (max-width:500px)
+      {
+        gap: 3.5vw;
+      }
       // children 
-    button:hover
-    {
-      scale: 1.32;
-      //  transition settings
-      transition-property: scale; 
-      transition-duration: $trans_time; 
-      transition-timing-function: ease-in-out; 
+      button:hover {
+        scale: 1.32;
+        //  transition settings
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
 
+      }
+    }
+
+    a {
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-left: 4vw;
+
+      &:hover {
+        cursor: pointer;
+        scale: 1.2;
+        //  transition settings
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
+      }
+
+      &:not(:hover) {
+        cursor: pointer;
+        scale: 1;
+        //  transition settings
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+      }
     }
   }
 
-  header a {
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding-left: 2vw;
-    &:hover
-    {
-      cursor: pointer;
-      scale: 1.2;
-      //  transition settings
-      transition-property: scale; 
-      transition-duration: $trans_time; 
-      transition-timing-function: ease-in-out; 
+  main {
+    padding: 1rem;
 
-    }
-    &:not(:hover)
-    {
-      cursor: pointer;
-      scale: 1;
-      //  transition settings
-      transition-property: scale; 
-      transition-duration: $trans_time; 
-      transition-timing-function: ease-in-out; 
+    // children
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      // children
+
+      .product {
+        scale: 1;
+        margin: 1rem;
+        //  transition settings
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
+        &:hover
+        {
+          scale: 1.05;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
+        a {
+          text-decoration: none;
+        }
+        // children
+        img {
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .info {
+          padding: 1rem;
+        }
+      }
     }
   }
 
@@ -99,55 +154,110 @@ $trans_time:500ms;
   .#{$theme1}_app {
     background: var(--#{$theme1}_color_1);
     //  transition settings
-    transition-property: background-color; 
-    transition-duration: $trans_time; 
-    transition-timing-function: ease-in-out; 
+    transition-property: background-color;
+    transition-duration: $trans_time;
+    transition-timing-function: ease-in-out;
 
-      // children 
+    // children 
     header {
       background: var(--#{$theme1}_color_2);
       //  transition settings
-      transition-property: background-color; 
-      transition-duration: $trans_time; 
-      transition-timing-function: ease-in-out; 
+      transition-property: background-color;
+      transition-duration: $trans_time;
+      transition-timing-function: ease-in-out;
 
       // children 
 
       .#{$theme1}_theme_button {
         border-radius: 5px;
-        border: solid 2px var(--#{$theme1}_color_3) ;
+        border: solid 2px var(--#{$theme1}_color_3);
         color: var(--#{$theme1}_color_2);
         background-color: var(--#{$theme1}_color_3);
         scale: 1.1;
         //  transition settings
-        transition-property: scale; 
-        transition-duration: $trans_time; 
-        transition-timing-function: ease-in-out; 
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
       }
+
       .#{$theme2}_theme_button {
         border-radius: 5px;
-        border: solid 2px var(--#{$theme2}_color_3) ;
+        border: solid 2px var(--#{$theme2}_color_3);
         color: var(--#{$theme2}_color_3);
         background-color: var(--#{$theme2}_color_2);
         scale: 1;
         //  transition settings
-        transition-property: scale; 
-        transition-duration: $trans_time; 
-        transition-timing-function: ease-in-out; 
+        transition-property: scale;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
       }
+
       a {
         color: var(--#{$theme1}_color_3);
         //  transition settings
-        transition-property: color; 
-        transition-duration: $trans_time; 
-        transition-timing-function: ease-in-out; 
+        transition-property: color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
       }
     }
+
+    main {
+
+      // children
+
+      .feat {
+        font-size: 2.5rem;
+        -webkit-text-fill-color: var(--#{$theme1}_color_3);
+        /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: var(--#{$theme1}_color_2);
+        //  transition settings
+        transition-property: -webkit-text-fill-color, -webkit-text-stroke-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+      }
+
+      .products {
+        // children
+
+        .product {
+          background-color: var(--#{$theme1}_color_2);
+          border: 5px var(--#{$theme1}_color_3) solid;
+          border-radius: 10px;
+          //  transition settings
+          transition-property: border-color,background-color;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+          // children
+
+          .info {
+            color: var(--#{$theme1}_color_3);
+            // background-color: var(--#{$theme1}_color_2);
+            //  transition settings
+            transition-property: color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+            // children
+  
+            .name {
+              color: var(--#{$theme1}_color_3);
+              //  transition settings
+              transition-property: color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+            }
+          }
+        }
+      }
+    }
+
   }
+
+
 }
 
 // generating the dark theme
-@include theme_app(dark,amazon);
+@include theme_app(dark, amazon);
 
 // generating the amazon theme
-@include theme_app(amazon,dark);
+@include theme_app(amazon, dark);

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type stateType = {
+export type stateType = {
     theme:string
 }
 
