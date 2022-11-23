@@ -12,7 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("https://picsum.photos/0?random=10");
+  // background: url("https://picsum.photos/0?random=10");
   background-position: center;
   // background-size:cover;
   background-repeat: repeat;
@@ -20,13 +20,15 @@ body {
 
 $trans_time: 500ms;
 
+$product_border_radius: 10px;
+
 :root {
   --amazon_color_1: hsla(0, 0%, 100%, 0.87);
   --amazon_color_2: hsl(0, 2%, 18%);
   --amazon_color_3: hsl(39, 100%, 75%);
 
 
-  --dark_color_1: hsla(0, 0%, 0%, 0.658);
+  --dark_color_1: hsla(0, 0%, 0%, 0.897);
   --dark_color_2: hsl(0, 0%, 0%);
   --dark_color_3: hsl(0, 0%, 100%);
 
@@ -40,12 +42,19 @@ $trans_time: 500ms;
   min-height: 100vh;
   height: 100%;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
   // children 
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 7vh;
+    width: 100%;
     // padding: 1vh;
 
     // children
@@ -56,23 +65,15 @@ $trans_time: 500ms;
       justify-content: space-between;
       gap: .7vw;
 
-      @media all and (max-width:500px)
-      {
-        gap: 3.5vw;
+      @media all and (max-width:1000px) {
+        gap: 2vw;
       }
-      @media all and (max-width:1000px)
-      {
-        gap: 1.5vw;
-      }
-      // children 
-      button:hover {
-        scale: 1.32;
-        //  transition settings
-        transition-property: scale;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
 
+      @media all and (max-width:500px) {
+        gap: 4vw;
       }
+
+      // children 
     }
 
     a {
@@ -92,7 +93,6 @@ $trans_time: 500ms;
       }
 
       &:not(:hover) {
-        cursor: pointer;
         scale: 1;
         //  transition settings
         transition-property: scale;
@@ -104,6 +104,7 @@ $trans_time: 500ms;
 
   main {
     padding: 1rem;
+    width: 95%;
 
 
     // children
@@ -116,26 +117,31 @@ $trans_time: 500ms;
       // children
 
       .product {
+        border-radius: $product_border_radius;
+        overflow: hidden;
+
         margin: 1rem;
-        &:hover
-        {
+
+        &:hover {
           scale: 1.05;
           //  transition settings
           transition-property: scale;
           transition-duration: $trans_time;
           transition-timing-function: ease-in-out;
         }
-        &:not(:hover)
-        {
+
+        &:not(:hover) {
           scale: 1;
           //  transition settings
           transition-property: scale;
           transition-duration: $trans_time;
           transition-timing-function: ease-in-out;
         }
+
         a {
           text-decoration: none;
         }
+
         // children
         img {
           width: 100%;
@@ -147,6 +153,15 @@ $trans_time: 500ms;
         }
       }
     }
+  }
+
+  
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    width: 100%;
   }
 
 }
@@ -161,6 +176,7 @@ $trans_time: 500ms;
     transition-timing-function: ease-in-out;
 
     // children 
+
     header {
       background: var(--#{$theme1}_color_2);
       //  transition settings
@@ -192,6 +208,18 @@ $trans_time: 500ms;
         transition-property: scale;
         transition-duration: $trans_time;
         transition-timing-function: ease-in-out;
+
+        &:hover {
+          cursor: pointer;
+          scale: 1.32;
+          color: var(--#{$theme2}_color_2);
+          background-color: var(--#{$theme2}_color_3);
+          //  transition settings
+          transition-property: scale, color, background-color;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+
+        }
       }
 
       a {
@@ -220,16 +248,16 @@ $trans_time: 500ms;
       }
 
       .products {
-        // children
 
+        // children
         .product {
           background-color: var(--#{$theme1}_color_2);
           border: 5px var(--#{$theme1}_color_3) solid;
-          border-radius: 10px;
           //  transition settings
-          transition-property: border-color,background-color;
+          transition-property: border-color, background-color;
           transition-duration: $trans_time;
           transition-timing-function: ease-in-out;
+
           // children
 
           .info {
@@ -240,7 +268,7 @@ $trans_time: 500ms;
             transition-duration: $trans_time;
             transition-timing-function: ease-in-out;
             // children
-  
+
             .name {
               color: var(--#{$theme1}_color_3);
               //  transition settings
@@ -253,6 +281,14 @@ $trans_time: 500ms;
       }
     }
 
+    footer {
+      background: var(--#{$theme1}_color_2);
+      color: var(--#{$theme1}_color_3);
+      //  transition settings
+      transition-property: background-color,color;
+      transition-duration: $trans_time;
+      transition-timing-function: ease-in-out;
+    }
   }
 
 

@@ -1,7 +1,9 @@
 import express from 'express';
 import data from './data';
 const app = express();
+var cors = require('cors')
 
+app.use(cors()) 
 app.get('/api/products', (req, res) => {
     res.send(data.products);
 });
@@ -9,5 +11,5 @@ app.get('/api/products', (req, res) => {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-    console.log("ZAMAZON");
+    console.log(`PORT ${port}`);
 });

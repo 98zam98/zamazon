@@ -9,6 +9,7 @@ import themeSlice from './state/reducer/themeSlice';
 import { useRoutes } from "react-router-dom";
 import Home from './comp/Home';
 import ProductScreen from './comp/ProductScreen';
+import Footer from './comp/Footer';
 
 const App: FC = () => {
 
@@ -39,8 +40,8 @@ const App: FC = () => {
     // },
     // {
     //   path:'*' ,
-    //   element:<Missing />
-    // }
+    //   element:<Missing />  
+    // } 
   ]);
 
   return (
@@ -49,6 +50,7 @@ const App: FC = () => {
       {
         zRoutes
       }
+      <Footer />
     </div>
   );
 }

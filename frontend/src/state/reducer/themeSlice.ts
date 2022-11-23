@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type stateType = {
+export type themestateType = {
     theme:string
 }
 
 // this theme will be added to the className to change the looks  
-const initialState:stateType = {
+const initialState:themestateType = {
     theme: 'amazon'
 };
 
@@ -16,10 +16,10 @@ const themeSlice = createSlice({
     initialState,
     reducers:{
         // s here is short for state 
-        amazon:(s:stateType)=>{
+        amazon:(s:themestateType)=>{
             s.theme='amazon'
         },
-        dark:(s:stateType)=>{
+        dark:(s:themestateType)=>{
             s.theme='dark'
         },
     }
