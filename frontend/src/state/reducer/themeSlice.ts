@@ -7,6 +7,7 @@ export type themestateType = {
 // this theme will be added to the className to change the looks  
 const initialState:themestateType = {
     theme: 'amazon'
+    // theme: 'dark'
 };
 
 

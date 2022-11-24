@@ -1,10 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import "./App.scss";
 import Head from './comp/Head';
-import Mainer from './comp/Mainer';
-import data from './data';
 import { useAppDispatch, useAppSelector } from './state/hooks';
-import themeSlice from './state/reducer/themeSlice';
 
 import { useRoutes } from "react-router-dom";
 import Home from './comp/Home';

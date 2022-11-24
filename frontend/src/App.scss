@@ -22,16 +22,30 @@ $trans_time: 500ms;
 
 $product_border_radius: 10px;
 
+@mixin stroke_anime_2c($fill, $stroke, $transform_time) {
+  -webkit-text-fill-color: $fill;
+  /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: $stroke;
+  //  transition settings
+  transition-property: -webkit-text-fill-color, -webkit-text-stroke-color;
+  transition-duration: $transform_time;
+  transition-timing-function: ease-in-out;
+}
+
+
 :root {
+
   --amazon_color_1: hsla(0, 0%, 100%, 0.87);
   --amazon_color_2: hsl(0, 2%, 18%);
   --amazon_color_3: hsl(39, 100%, 75%);
+  --amazon_color_3_fade: hsla(39, 100%, 75%, 0.5);
 
 
   --dark_color_1: hsla(0, 0%, 0%, 0.897);
   --dark_color_2: hsl(0, 0%, 0%);
   --dark_color_3: hsl(0, 0%, 100%);
-
+  --dark_color_3_fade: hsla(0, 0%, 100%, 0.5);
 }
 
 //================================================================================
@@ -150,12 +164,14 @@ $product_border_radius: 10px;
 
         .info {
           padding: 1rem;
+
+          // children
         }
       }
     }
   }
 
-  
+
   footer {
     display: flex;
     justify-content: center;
@@ -176,6 +192,83 @@ $product_border_radius: 10px;
     transition-timing-function: ease-in-out;
 
     // children 
+
+    .error {
+      color: red;
+    }
+
+    .loading {
+      padding: 10px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      overflow: hidden;
+      $dim: 30vh;
+      width: $dim;
+      height: $dim;
+      background-color: white;
+      position: relative;
+      animation: text-color 2s ease-in-out infinite alternate;
+
+      @keyframes text-color {
+        0% {
+          color: rgba(0, 0, 0, 1);
+          // color: var(--#{$theme1}_color_3);
+          // color: var(--amazon_color_3_fade);
+
+        }
+
+        50% {
+          color: rgba(0, 0, 0, 0.5);
+          // color: var(--#{$theme1}_color_3_fade);
+
+        }
+
+        100% {
+          color: rgba(0, 0, 0, 1);
+
+          // color: var(--#{$theme1}_color_3);
+        }
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 85%;
+        height: 85%;
+        border-radius: 50%;
+        border: 15px solid transparent;
+        animation: rotate var(--duration) var(--timing) infinite;
+        pointer-events: none;
+      }
+
+      &::before {
+        border-left-color: rgb(0, 0, 0);
+        border-right-color: rgba(0, 0, 0, 0.5);
+        --duration: 2s;
+        --timing: ease-in;
+      }
+
+      &::after {
+        border-top-color: rgba(0, 0, 0, 0.5);
+        border-bottom-color: rgb(0, 0, 0);
+        --duration: 2.5s;
+        --timing: ease-out;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
 
     header {
       background: var(--#{$theme1}_color_2);
@@ -234,17 +327,15 @@ $product_border_radius: 10px;
     main {
 
       // children
-
       .feat {
-        font-size: 2.5rem;
-        -webkit-text-fill-color: var(--#{$theme1}_color_3);
-        /* Will override color (regardless of order) */
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: var(--#{$theme1}_color_2);
-        //  transition settings
-        transition-property: -webkit-text-fill-color, -webkit-text-stroke-color;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
+        top: 0;
+        position: relative;
+        font-size: 2.7rem;
+        @include stroke_anime_2c(var(--#{$theme1}_color_3), var(--#{$theme1}_color_2), $trans_time);
+      }
+
+      .true_error_feat {
+        top: -38vh;
       }
 
       .products {
@@ -261,6 +352,11 @@ $product_border_radius: 10px;
           // children
 
           .info {
+            // height: 15vh;
+            display: flex;
+            // flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
             color: var(--#{$theme1}_color_3);
             // background-color: var(--#{$theme1}_color_2);
             //  transition settings
@@ -269,13 +365,42 @@ $product_border_radius: 10px;
             transition-timing-function: ease-in-out;
             // children
 
-            .name {
-              color: var(--#{$theme1}_color_3);
+            .name_price {
+              font-size: 1.5rem;
+
+              // children
+              .name {
+                color: var(--#{$theme1}_color_3);
+                font-size: 1.7rem;
+              }
+            }
+
+            button {
+              font-size: 1.135rem;
+              padding: 0.7rem;
+              border-radius: 12px;
+              border: solid 3.5px var(--#{$theme1}_color_3);
+              color: var(--#{$theme1}_color_);
+              background-color: var(--#{$theme1}_color_2);
+              scale: 1;
               //  transition settings
-              transition-property: color;
+              transition-property: scale;
               transition-duration: $trans_time;
               transition-timing-function: ease-in-out;
+
+              &:hover {
+                cursor: pointer;
+                scale: 1.32;
+                color: var(--#{$theme1}_color_2);
+                background-color: var(--#{$theme1}_color_3);
+                //  transition settings
+                transition-property: scale, color, background-color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+
+              }
             }
+
           }
         }
       }
@@ -285,7 +410,7 @@ $product_border_radius: 10px;
       background: var(--#{$theme1}_color_2);
       color: var(--#{$theme1}_color_3);
       //  transition settings
-      transition-property: background-color,color;
+      transition-property: background-color, color;
       transition-duration: $trans_time;
       transition-timing-function: ease-in-out;
     }

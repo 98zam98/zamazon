@@ -1,16 +1,16 @@
 
-// type productstype = {
-//   name: string,
-//   slug: string,
-//   category: string,
-//   image: string,
-//   price: number,
-//   countInStock: 10,
-//   brand: string,
-//   rating: 4.5,
-//   numReviews: 10,
-//   description: string,
-// };
+export type productstype = {
+  name: string,
+  slug: string,
+  category: string,
+  image: string,
+  price: number,
+  countInStock: 10,
+  brand: string,
+  rating: 4.5,
+  numReviews: 10,
+  description: string,
+};
 // export type typedata = {
 //   products: productstype[]
 // };
