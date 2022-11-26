@@ -18,7 +18,7 @@ body {
   background-repeat: repeat;
 }
 
-$trans_time: 500ms;
+$trans_time: 1000ms;
 
 $product_border_radius: 10px;
 
@@ -39,13 +39,11 @@ $product_border_radius: 10px;
   --amazon_color_1: hsla(0, 0%, 100%, 0.87);
   --amazon_color_2: hsl(0, 2%, 18%);
   --amazon_color_3: hsl(39, 100%, 75%);
-  --amazon_color_3_fade: hsla(39, 100%, 75%, 0.5);
 
 
   --dark_color_1: hsla(0, 0%, 0%, 0.897);
   --dark_color_2: hsl(0, 0%, 0%);
   --dark_color_3: hsl(0, 0%, 100%);
-  --dark_color_3_fade: hsla(0, 0%, 100%, 0.5);
 }
 
 //================================================================================
@@ -53,88 +51,110 @@ $product_border_radius: 10px;
 
 // both themes will have the same design, but colors will be made in a different class 
 .App {
-  min-height: 100vh;
-  height: 100%;
+  & {
+    min-height: 100vh;
+    height: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  // children 
-
-  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 7vh;
+    flex-direction: column;
     width: 100%;
-    // padding: 1vh;
+  }
+
+  // children 
+
+  header {
+    & {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 7vh;
+      width: 100%;
+      // padding: 1vh;
+    }
 
     // children
 
     .theme_buttons {
-      padding-right: 2vh;
-      display: flex;
-      justify-content: space-between;
-      gap: .7vw;
+      & {
+        padding-right: 2vh;
+        display: flex;
+        justify-content: space-between;
+        gap: .7vw;
 
-      @media all and (max-width:1000px) {
-        gap: 2vw;
-      }
+        @media all and (max-width:1000px) {
+          gap: 2vw;
+        }
 
-      @media all and (max-width:500px) {
-        gap: 4vw;
+        @media all and (max-width:500px) {
+          gap: 4vw;
+        }
+
       }
 
       // children 
     }
 
     a {
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.2rem;
-      margin-left: 4vw;
-
-      &:hover {
-        cursor: pointer;
-        scale: 1.2;
-        //  transition settings
-        transition-property: scale;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
-
+      & {
+        text-decoration: none;
       }
 
-      &:not(:hover) {
-        scale: 1;
-        //  transition settings
-        transition-property: scale;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
+      // children
+
+      h1 {
+        & {
+          font-weight: bold;
+          // font-size: 1.6rem;
+          margin-left: 4vw;
+        }
+
+        &:hover {
+          cursor: pointer;
+          scale: 1.2;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time/4;
+          transition-timing-function: ease-in-out;
+
+        }
+
+        &:not(:hover) {
+          scale: 1;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
       }
     }
   }
 
   main {
-    padding: 1rem;
-    width: 95%;
-
+    & {
+      padding: 1rem;
+      width: 95%;
+    }
 
     // children
 
     .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      & {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       // children
 
       .product {
-        border-radius: $product_border_radius;
-        overflow: hidden;
+        & {
+          border-radius: $product_border_radius;
+          overflow: hidden;
 
-        margin: 1rem;
+          margin: 1rem;
+        }
 
         &:hover {
           scale: 1.05;
@@ -185,11 +205,13 @@ $product_border_radius: 10px;
 // both themes will have the same design, but opposite colors, so we made them using mixin 
 @mixin theme_app($theme1, $theme2) {
   .#{$theme1}_app {
-    background: var(--#{$theme1}_color_1);
-    //  transition settings
-    transition-property: background-color;
-    transition-duration: $trans_time;
-    transition-timing-function: ease-in-out;
+    & {
+      background: var(--#{$theme1}_color_1);
+      //  transition settings
+      transition-property: background-color;
+      transition-duration: $trans_time;
+      transition-timing-function: ease-in-out;
+    }
 
     // children 
 
@@ -198,39 +220,42 @@ $product_border_radius: 10px;
     }
 
     .loading {
-      padding: 10px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2rem;
-      overflow: hidden;
-      $dim: 30vh;
-      width: $dim;
-      height: $dim;
-      background-color: white;
-      position: relative;
-      animation: text-color 2s ease-in-out infinite alternate;
+      & {
+        color: var(--#{$theme1}_color_3);
+        padding: 10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        overflow: hidden;
+        $dim: 30vh;
+        width: $dim;
+        height: $dim;
+        position: relative;
 
-      @keyframes text-color {
-        0% {
-          color: rgba(0, 0, 0, 1);
-          // color: var(--#{$theme1}_color_3);
-          // color: var(--amazon_color_3_fade);
+        // fading in and out
+        animation: text-color 2s ease-in-out infinite alternate;
 
+        //  transition settings
+        transition-property: background-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
+        @keyframes text-color {
+          0% {
+            opacity: 100%;
+          }
+
+          50% {
+            opacity: 10%;
+          }
+
+          100% {
+            opacity: 100%;
+          }
         }
 
-        50% {
-          color: rgba(0, 0, 0, 0.5);
-          // color: var(--#{$theme1}_color_3_fade);
-
-        }
-
-        100% {
-          color: rgba(0, 0, 0, 1);
-
-          // color: var(--#{$theme1}_color_3);
-        }
       }
 
       &::before,
@@ -246,17 +271,28 @@ $product_border_radius: 10px;
       }
 
       &::before {
-        border-left-color: rgb(0, 0, 0);
-        border-right-color: rgba(0, 0, 0, 0.5);
+        border-left-color: var(--#{$theme1}_color_3);
+        border-right-color: var(--#{$theme1}_color_2);
+        //  transition settings
+        transition-property: border-left-color, border-right-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
         --duration: 2s;
-        --timing: ease-in;
+        --timing: linear;
       }
 
       &::after {
-        border-top-color: rgba(0, 0, 0, 0.5);
-        border-bottom-color: rgb(0, 0, 0);
+        opacity: 25%;
+        border-top-color: var(--#{$theme1}_color_3);
+        border-bottom-color: var(--#{$theme1}_color_2);
+        //  transition settings
+        transition-property: border-top-color, border-bottom-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
         --duration: 2.5s;
-        --timing: ease-out;
+        --timing: linear;
       }
 
       @keyframes rotate {
@@ -271,36 +307,42 @@ $product_border_radius: 10px;
     }
 
     header {
-      background: var(--#{$theme1}_color_2);
-      //  transition settings
-      transition-property: background-color;
-      transition-duration: $trans_time;
-      transition-timing-function: ease-in-out;
-
-      // children 
-
-      .#{$theme1}_theme_button {
-        border-radius: 5px;
-        border: solid 2px var(--#{$theme1}_color_3);
-        color: var(--#{$theme1}_color_2);
-        background-color: var(--#{$theme1}_color_3);
-        scale: 1.1;
+      & {
+        background: var(--#{$theme1}_color_2);
         //  transition settings
-        transition-property: scale;
+        transition-property: background-color;
         transition-duration: $trans_time;
         transition-timing-function: ease-in-out;
       }
 
+      // children 
+
+      .#{$theme1}_theme_button {
+        & {
+          border-radius: 5px;
+          border: solid 2px var(--#{$theme1}_color_3);
+          color: var(--#{$theme1}_color_2);
+          background-color: var(--#{$theme1}_color_3);
+          scale: 1.1;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
+      }
+
       .#{$theme2}_theme_button {
-        border-radius: 5px;
-        border: solid 2px var(--#{$theme2}_color_3);
-        color: var(--#{$theme2}_color_3);
-        background-color: var(--#{$theme2}_color_2);
-        scale: 1;
-        //  transition settings
-        transition-property: scale;
-        transition-duration: $trans_time;
-        transition-timing-function: ease-in-out;
+        & {
+          border-radius: 5px;
+          border: solid 2px var(--#{$theme2}_color_3);
+          color: var(--#{$theme2}_color_3);
+          background-color: var(--#{$theme2}_color_2);
+          scale: 1;
+          //  transition settings
+          transition-property: scale;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
 
         &:hover {
           cursor: pointer;
@@ -313,12 +355,23 @@ $product_border_radius: 10px;
           transition-timing-function: ease-in-out;
 
         }
+
+        &:not(:hover) {
+          scale: 1;
+          color: var(--#{$theme2}_color_3);
+          background-color: var(--#{$theme2}1);
+          //  transition settings
+          transition-property: scale, color, background-color;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
+
       }
 
-      a {
+      h1 {
         color: var(--#{$theme1}_color_3);
         //  transition settings
-        transition-property: color;
+        transition-property: color, ;
         transition-duration: $trans_time;
         transition-timing-function: ease-in-out;
       }
@@ -342,27 +395,29 @@ $product_border_radius: 10px;
 
         // children
         .product {
-          background-color: var(--#{$theme1}_color_2);
-          border: 5px var(--#{$theme1}_color_3) solid;
-          //  transition settings
-          transition-property: border-color, background-color;
-          transition-duration: $trans_time;
-          transition-timing-function: ease-in-out;
+          & {
+            background-color: var(--#{$theme1}_color_2);
+            border: 5px var(--#{$theme1}_color_3) solid;
+            //  transition settings
+            transition-property: border-color, background-color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+          }
 
           // children
 
           .info {
-            // height: 15vh;
-            display: flex;
-            // flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            color: var(--#{$theme1}_color_3);
-            // background-color: var(--#{$theme1}_color_2);
-            //  transition settings
-            transition-property: color;
-            transition-duration: $trans_time;
-            transition-timing-function: ease-in-out;
+            & {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              color: var(--#{$theme1}_color_3);
+              //  transition settings
+              transition-property: color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+            }
+
             // children
 
             .name_price {
@@ -376,17 +431,19 @@ $product_border_radius: 10px;
             }
 
             button {
-              font-size: 1.135rem;
-              padding: 0.7rem;
-              border-radius: 12px;
-              border: solid 3.5px var(--#{$theme1}_color_3);
-              color: var(--#{$theme1}_color_);
-              background-color: var(--#{$theme1}_color_2);
-              scale: 1;
-              //  transition settings
-              transition-property: scale;
-              transition-duration: $trans_time;
-              transition-timing-function: ease-in-out;
+              & {
+                font-size: 1.135rem;
+                padding: 0.7rem;
+                border-radius: 12px;
+                border: solid 3.5px;
+                color: var(--#{$theme1}_color_3);
+                background-color: var(--#{$theme1}_color_2);
+                scale: 1;
+                //  transition settings
+                transition-property: scale, border-color, color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+              }
 
               &:hover {
                 cursor: pointer;
@@ -399,11 +456,101 @@ $product_border_radius: 10px;
                 transition-timing-function: ease-in-out;
 
               }
+
+              &:not(:hover) {
+                cursor: pointer;
+                border: solid 3.5px var(--#{$theme1}_color_3);
+                color: var(--#{$theme1}_color_3);
+                background-color: var(--#{$theme1}_color_2);
+                scale: 1;
+                //  transition settings
+                transition-property: scale, color, background-color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+
+              }
             }
 
           }
         }
       }
+    }
+
+    .product_screen {
+      & {
+        min-width: 90%;
+        max-width: 90%;
+        border-radius: 12px;
+        border: solid 3.5px;
+        color: var(--#{$theme1}_color_3);
+        background-color: var(--#{$theme1}_color_2);
+        padding: 1rem;
+      }
+
+      .prod_view {
+        & {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        .prod_cart {
+          button {
+
+            & {
+              font-size: 1.0135rem;
+              padding: 0.427rem;
+              margin: 0.427rem;
+              border-radius: 12px;
+              border: solid 3.5px;
+              color: var(--#{$theme1}_color_3);
+              background-color: var(--#{$theme1}_color_2);
+              scale: 1;
+              //  transition settings
+              transition-property: scale, border-color, color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+            }
+
+            &:hover {
+              cursor: pointer;
+              scale: 1.132;
+              color: var(--#{$theme1}_color_2);
+              background-color: var(--#{$theme1}_color_3);
+              //  transition settings
+              transition-property: scale, color, background-color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+
+            }
+
+            &:not(:hover) {
+              cursor: pointer;
+              border: solid 3.5px var(--#{$theme1}_color_3);
+              color: var(--#{$theme1}_color_3);
+              background-color: var(--#{$theme1}_color_2);
+              scale: 1;
+              //  transition settings
+              transition-property: scale, color, background-color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+
+            }
+          }
+        }
+
+        .prod_img {
+          & {
+            max-width: 40%;
+          }
+
+          img {
+            max-width: 100%;
+            border: solid 3px var(--#{$theme1}_color_3);
+            border-radius: 10px;
+          }
+        }
+      }
+
     }
 
     footer {

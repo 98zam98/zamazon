@@ -7,6 +7,7 @@ import { useRoutes } from "react-router-dom";
 import Home from './comp/Home';
 import ProductScreen from './comp/ProductScreen';
 import Footer from './comp/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const App: FC = () => {
 

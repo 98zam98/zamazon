@@ -6,13 +6,14 @@ import axios, { AxiosError } from 'axios';
 import ploadingSlice from '../state/reducer/ploadingSlice';
 
 import { useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 const ProductScreen: FC = () => {
 
   // we  use this to get the url
   const params = useParams();
 
- 
+
   // apploading is used to see the whole loading state for 
   // s here is short for state 
   const apploading = useAppSelector(s => s.ploading);
@@ -21,7 +22,7 @@ const ProductScreen: FC = () => {
   // const Products = apploading.products;
   const dispatch = useAppDispatch();
 
-    
+
   useEffect(() => {
     const fetchdata = async () => {
       dispatch(ploadingSlice.actions.fetch_request);
@@ -44,15 +45,57 @@ const ProductScreen: FC = () => {
 
   }, [params.slug])
 
-    return (
-        <div>
-        <div>{params.slug} </div>
-        <div>
-          {(apploading.product as any)["name"] } 
-          {/* { apploading.product["name"] }  */}
-        </div> 
-        </div>
-    )
+  return (
+    <div className="product_screen">
+    <Helmet>
+      <title>{params.slug}</title>
+    </Helmet>
+      {
+
+        // <h1 className="loading">loading</h1> 
+
+        apploading.loading ?
+          <h1 className="loading">loading</h1> :
+
+
+          apploading.error.isAxiosError ?
+            <h1 className="error">
+              {apploading.error.message}
+            </h1> :
+
+            <div className='prod_view' >
+
+              <div className='prod_img' >
+              <img src={(apploading.product as any)['image']} alt={(apploading.product as any)['name']} />
+              </div>
+
+              <div className='prod_info' >
+                <div className='prod_name' >
+                  {(apploading.product as any)["name"]}
+                </div>
+                <div className='prod_price' >
+                price: {(apploading.product as any)["price"]}
+                </div>
+                <div className='prod_description' >
+                price: {(apploading.product as any)["description"]}
+                </div>
+              </div>
+
+              <div className='prod_cart' >
+                <div className='prod_price' >
+                price: {(apploading.product as any)["price"]}
+                </div>
+                <div className='prod_stoke' >
+                Count In Stock: {(apploading.product as any)["countInStock"]}
+                </div>
+                <button className="add_to_cart">add to cart</button>
+              </div>
+
+            </div>
+
+      }
+    </div>
+  )
 }
 
 export default ProductScreen
