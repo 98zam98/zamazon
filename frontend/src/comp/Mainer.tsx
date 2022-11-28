@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../state/hooks';
 import { Link } from "react-router-dom";
 import axios, { AxiosError } from 'axios';
 import loadingSlice from '../state/reducer/loadingSlice';
+import Add_to_cart from './Add_to_cart';
 
 const Mainer: FC = () => {
 
@@ -18,14 +19,14 @@ const Mainer: FC = () => {
   useEffect(() => {
     const fetchdata = async () => {
       dispatch(loadingSlice.actions.fetch_request);
-      console.log(apploading);
+      // console.log(apploading);
       try {
         const result = await axios.get('/api/products');
         dispatch(loadingSlice.actions.fetch_success(result.data));
-        console.log(apploading);
+        // console.log(apploading);
       } catch (e) {
         dispatch(loadingSlice.actions.fetch_fail((e as AxiosError)));
-        console.log(apploading);
+        // console.log(apploading);
       }
     };
     fetchdata();
@@ -64,7 +65,7 @@ const Mainer: FC = () => {
                         </p>
                       </div>
                       <div>
-                        <button>ADD</button>
+                <Add_to_cart product={i} />
                       </div>
                     </div>
                   </div>

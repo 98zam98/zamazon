@@ -8,6 +8,9 @@ import Home from './comp/Home';
 import ProductScreen from './comp/ProductScreen';
 import Footer from './comp/Footer';
 import { Helmet } from 'react-helmet-async';
+import Missing from './comp/Missing';
+import Cart_screen from './comp/Cart_screen';
+import Signin_screen from './comp/Signin_screen';
 
 const App: FC = () => {
 
@@ -28,6 +31,18 @@ const App: FC = () => {
       path: '/product/:slug',
       element: <ProductScreen />
     },
+    {
+      path: '/cart',
+      element: <Cart_screen />
+    },
+    {
+      path: '/Signin',
+      element: <Signin_screen />
+    },
+    {
+      path: '*',
+      element: <Missing />
+    }
     // {
     //   path:'/About' ,
     //   element:<About />
@@ -45,6 +60,11 @@ const App: FC = () => {
   return (
     <div className={`${AppTheme}_app App`} >
       <Head />
+
+      <div className="instead_of_Head" >
+      </div>
+
+
       {
         zRoutes
       }

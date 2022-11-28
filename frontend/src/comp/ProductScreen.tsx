@@ -7,6 +7,8 @@ import ploadingSlice from '../state/reducer/ploadingSlice';
 
 import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
+import cartSlice from '../state/reducer/cartSlice';
+import Add_to_cart from './Add_to_cart';
 
 const ProductScreen: FC = () => {
 
@@ -47,9 +49,9 @@ const ProductScreen: FC = () => {
 
   return (
     <div className="product_screen">
-    <Helmet>
-      <title>{params.slug}</title>
-    </Helmet>
+      <Helmet>
+        <title>{params.slug}</title>
+      </Helmet>
       {
 
         // <h1 className="loading">loading</h1> 
@@ -66,7 +68,7 @@ const ProductScreen: FC = () => {
             <div className='prod_view' >
 
               <div className='prod_img' >
-              <img src={(apploading.product as any)['image']} alt={(apploading.product as any)['name']} />
+                <img src={(apploading.product as any)['image']} alt={(apploading.product as any)['name']} />
               </div>
 
               <div className='prod_info' >
@@ -74,21 +76,21 @@ const ProductScreen: FC = () => {
                   {(apploading.product as any)["name"]}
                 </div>
                 <div className='prod_price' >
-                price: {(apploading.product as any)["price"]}
+                  price: {(apploading.product as any)["price"]}
                 </div>
                 <div className='prod_description' >
-                price: {(apploading.product as any)["description"]}
+                  price: {(apploading.product as any)["description"]}
                 </div>
               </div>
 
               <div className='prod_cart' >
                 <div className='prod_price' >
-                price: {(apploading.product as any)["price"]}
+                  price: {(apploading.product as any)["price"]}
                 </div>
                 <div className='prod_stoke' >
-                Count In Stock: {(apploading.product as any)["countInStock"]}
+                  Count In Stock: {(apploading.product as any)["countInStock"]}
                 </div>
-                <button className="add_to_cart">add to cart</button>
+                <Add_to_cart product={apploading.product} />
               </div>
 
             </div>
