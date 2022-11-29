@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../state/hooks';
 import cartSlice from '../state/reducer/cartSlice';
 import idprodSlice from '../state/reducer/idprodSlice';

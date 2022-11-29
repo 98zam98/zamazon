@@ -11,40 +11,29 @@ const Mainer: FC = () => {
   // apploading is used to see the whole loading state for debug
   // s here is short for state 
   const apploading = useAppSelector(s => s.loading);
-  // Products is used to render 
-  // const Products = useAppSelector( s => s.loading.products);
-  // const Products = apploading.products;
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchdata = async () => {
       dispatch(loadingSlice.actions.fetch_request);
-      // console.log(apploading);
       try {
         const result = await axios.get('/api/products');
         dispatch(loadingSlice.actions.fetch_success(result.data));
-        // console.log(apploading);
       } catch (e) {
         dispatch(loadingSlice.actions.fetch_fail((e as AxiosError)));
-        // console.log(apploading);
       }
     };
     fetchdata();
-
   }, [])
 
   return (
     <main>
-      <h1 className={ `feat ${apploading.loading}_loading_feat ${apploading.error.isAxiosError}_error_feat `}>featured products</h1>
+      <h1 className={`feat ${apploading.loading}_loading_feat ${apploading.error.isAxiosError}_error_feat `}>featured products</h1>
       <div className="products">
         {
-
-            // <h1 className="loading">loading</h1> 
-
           apploading.loading ?
             <h1 className="loading">loading</h1> :
-  
-
             apploading.error.isAxiosError ?
               <h1 className="error">
                 {apploading.error.message}
@@ -65,14 +54,13 @@ const Mainer: FC = () => {
                         </p>
                       </div>
                       <div>
-                <Add_to_cart product={i} />
+                        <Add_to_cart product={i} />
                       </div>
                     </div>
                   </div>
                 )
               )
-  
-  }
+        }
       </div>
     </main>
   )

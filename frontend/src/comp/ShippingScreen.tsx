@@ -12,10 +12,9 @@ const ShippingScreen: FC = () => {
 
   // s here is short for state 
   const appuser = useAppSelector(s => s.user);
-  console.log((appuser as any).token)
   // s here is short for state 
   const cart = useAppSelector(s => s.cart.cart_items);
-  console.log(cart)
+  
   const dispatch = useAppDispatch()
   // end of state 
 
@@ -64,7 +63,7 @@ const ShippingScreen: FC = () => {
         } >
           <div className="legend_fieldset">
             <fieldset>
-              <legend>What's your Name?</legend>
+              <legend>What's your Address?</legend>
               <input type="Name" name="Name" id="Name" required
                 onChange={e => setAddress(e.target.value)
                 } />

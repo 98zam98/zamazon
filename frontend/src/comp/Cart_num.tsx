@@ -1,17 +1,15 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../state/hooks';
 
-const Cart_num:FC = () => {
-  
-    // s here is short for state 
-    const cart = useAppSelector(s => s.cart.cart_items);
-    const dispatch = useAppDispatch()
-    // end of state 
+const Cart_num: FC = () => {
 
-    // console.log(cart)
+  // s here is short for state 
+  const cart = useAppSelector(s => s.cart.cart_items);
+  const dispatch = useAppDispatch()
+  // end of state 
 
-    return (
-      <span className="cart_num">{cart.length}</span>
+  return (
+    <span className="cart_num">{cart.length}</span>
   )
 }
 

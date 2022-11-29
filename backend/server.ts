@@ -10,11 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// var cors = require('cors')
-
-// app.use(cors()) ;
-
 // to handle .env
 dotenv.config();
 

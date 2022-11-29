@@ -20,7 +20,6 @@ const Remove_from_cart: FC<Props> = (x) => {
           () => {
               dispatch(idprodSlice.actions.dec())
               dispatch(cartSlice.actions.remove({ id: (x.product as any).id, prod: {}}))
-              // dispatch(cartSlice.actions.remove({ id: (x.product as any).id, prod: (x.product as any).prod }))
             
           }
         }

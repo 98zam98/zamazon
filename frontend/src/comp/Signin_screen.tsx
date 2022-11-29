@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { stat } from 'fs';
 import React, { FC, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -10,7 +9,6 @@ const Signin_screen: FC = () => {
   
   // s here is short for state 
   const appuser = useAppSelector(s => s.user);
-  // Products is used to render 
   const dispatch = useAppDispatch();
 
   const loc = useLocation();
@@ -25,11 +23,7 @@ const Signin_screen: FC = () => {
         nav(redirect || '/');
       }
     }, 10);
-  }, [])
-
-
-  //   console.log("went back");
-  // }
+  }, []);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("")
   return (
@@ -42,20 +36,12 @@ const Signin_screen: FC = () => {
         <form action="submit" onSubmit={
           async (e) => {
             e.preventDefault();
-            // console.log(Email);
-            // console.log(Password);
             try {
               const { data } = await axios.post("/api/users/signin", {
                 "email": Email,
                 "password": Password
               });
-              dispatch(userSlice.actions.signin(data))
-              console.log(data);
-              //  state redux 
-
-              console.log(appuser);
-              //  state redux    done
-
+              dispatch(userSlice.actions.signin(data));
               nav(redirect || '/');
 
             } catch (error) {

@@ -8,9 +8,7 @@ type Theme_button_props = {
 };
 const Theme_button: FC<Theme_button_props> = (x) => {
 
-    // this  AppTheme will be used to change the theme of the app  
-    // s here is short for state 
-    // const AppTheme = useAppSelector(s => s.themeState.theme);
+    // this AppTheme will be used to change the theme of the app  
     const dispatch = useAppDispatch()
     // end of state 
 
