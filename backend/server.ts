@@ -4,7 +4,12 @@ import mongoose from 'mongoose';
 import data from './data';
 import seedRouter from './routes/seedRoutes';
 import productRouter from './routes/productRoutes';
+import userRouter from './routes/userRoutes';
+import orderRouter from './routes/orderRoutes';
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // var cors = require('cors')
 
@@ -20,12 +25,25 @@ mongoose.connect((process.env as any).MONGODB_URI).then(()=>{
 
 
 
-// products will be created here
+// products\users will be created here
 app.use('/api/seed', seedRouter);
 
 // products that will be shown 
 app.use('/api/products', productRouter);
 
+// users that will be shown 
+app.use('/api/users', userRouter);
+
+//  to place orders 
+app.use('/api/orders', orderRouter);
+
+// error handle
+
+app.use((err:any, req:any, res:any, next:any) => {
+    res.status(500).send({ message: err.message });
+  });
+
+  
 // ===================================================================== deploy
 
 const port = process.env.PORT || 5000;

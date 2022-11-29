@@ -23,6 +23,11 @@ const cartSlice = createSlice({
         {
             s.cart_items=s.cart_items.filter((i) => (i as any).id != (action.payload as any).id);
             
+        },
+        clear:(s:cart_state_type)=>
+        {
+            s.cart_items=[]
+            
         }
     }});
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../state/hooks';
 
 const Cart_num:FC = () => {
-    // this  AppTheme will be used to change the theme of the app  
+  
     // s here is short for state 
     const cart = useAppSelector(s => s.cart.cart_items);
     const dispatch = useAppDispatch()

@@ -11,6 +11,9 @@ import { Helmet } from 'react-helmet-async';
 import Missing from './comp/Missing';
 import Cart_screen from './comp/Cart_screen';
 import Signin_screen from './comp/Signin_screen';
+import Userpage from './comp/Userpage';
+import ShippingScreen from './comp/ShippingScreen';
+import Signup_screen from './comp/Signup_screen';
 
 const App: FC = () => {
 
@@ -38,6 +41,19 @@ const App: FC = () => {
     {
       path: '/Signin',
       element: <Signin_screen />
+    },
+    {
+      path: '/Signup',
+      element: <Signup_screen />
+    },
+    {
+      path: '/Shipping',
+      element: <ShippingScreen />
+    },
+
+    {
+      path: '/Userpage',
+      element: <Userpage />
     },
     {
       path: '*',

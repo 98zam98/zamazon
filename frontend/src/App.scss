@@ -116,6 +116,32 @@ $product_border_radius: 10px;
           margin-right: 10px;
         }
 
+        .name {
+          & {
+            font-weight: bold;
+            // font-size: 1.6rem;
+            margin: 10px;
+            margin-left: 4vw;
+          }
+
+          &:hover {
+            cursor: pointer;
+            scale: 1.2;
+            //  transition settings
+            transition-property: scale,color;
+            transition-duration: $trans_time/4;
+            transition-timing-function: ease-in-out;
+
+          }
+
+          &:not(:hover) {
+            scale: 1;
+            //  transition settings
+            transition-property: scale,color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+          }
+        }
         // children
         .cart_link {
           & {
@@ -131,32 +157,6 @@ $product_border_radius: 10px;
           }
         }
 
-        .name {
-          & {
-            font-weight: bold;
-            // font-size: 1.6rem;
-            margin: 10px;
-            margin-left: 4vw;
-          }
-
-          &:hover {
-            cursor: pointer;
-            scale: 1.2;
-            //  transition settings
-            transition-property: scale;
-            transition-duration: $trans_time/4;
-            transition-timing-function: ease-in-out;
-
-          }
-
-          &:not(:hover) {
-            scale: 1;
-            //  transition settings
-            transition-property: scale;
-            transition-duration: $trans_time;
-            transition-timing-function: ease-in-out;
-          }
-        }
       }
     }
   }
@@ -384,6 +384,85 @@ $product_border_radius: 10px;
       transition-timing-function: ease-in-out;
     }
 
+    // children 
+    .Signup_screen {
+    form{
+      & {
+        color: var(--#{$theme1}_color_3);
+        padding: 20px;
+        border-radius: 20px;
+        background-color: var(--#{$theme1}_color_2);
+        border: 5px var(--#{$theme1}_color_3) solid;
+        //  transition settings
+        transition-property: border-color, color, background-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+      }
+
+      // children
+      .signup_button {
+        float: right;
+        // children
+            button {
+              & {
+                font-size: 1.135rem;
+                padding: 0.3rem;
+                border-radius: 12px;
+                border: solid 3.5px;
+                color: var(--#{$theme1}_color_3);
+                background-color: var(--#{$theme1}_color_2);
+                scale: 1;
+                //  transition settings
+                transition-property: scale, border-color, color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+              }
+
+              &:hover {
+                cursor: pointer;
+                scale: 1.32;
+                color: var(--#{$theme1}_color_2);
+                background-color: var(--#{$theme1}_color_3);
+                //  transition settings
+                transition-property: scale, color,border-color, background-color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+
+              }
+
+              &:not(:hover) {
+                cursor: pointer;
+                border: solid 3.5px var(--#{$theme1}_color_3);
+                color: var(--#{$theme1}_color_3);
+                background-color: var(--#{$theme1}_color_2);
+                scale: 1;
+                //  transition settings
+                transition-property: scale, color,border-color, background-color;
+                transition-duration: $trans_time;
+                transition-timing-function: ease-in-out;
+
+              }
+            }
+
+      }
+
+      .legend_fieldset {
+        padding: 10px;
+
+      // children
+        legend {
+          font-weight: bold;
+        }
+      }
+    }
+    .new_customer{
+      margin: 50px;
+      border: 2px solid var(--#{$theme1}_color_2);
+      background: white;
+      border-radius: 25px;
+      padding: 10px;
+    }
+  }
     // children 
     .Signin_screen {
     form{
@@ -624,6 +703,63 @@ $product_border_radius: 10px;
       .links {
         .name {
           color: var(--#{$theme1}_color_3);
+          //  transition settings
+          transition-property: color ;
+          transition-duration: $trans_time;
+          transition-timing-function: ease-in-out;
+        }
+        
+        .signin {
+          & {
+            font-size: 1.135rem;
+            padding: 0.17rem;
+            margin: 0.517rem;
+            border-radius: 12px;
+            border: solid 3.5px;
+            color: var(--#{$theme1}_color_3);
+            background-color: var(--#{$theme1}_color_2);
+            scale: 1;
+            //  transition settings
+            transition-property: scale, border-color, color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+          }
+
+          &:hover {
+            cursor: pointer;
+            scale: 1.132;
+            color: var(--#{$theme1}_color_2);
+            background-color: var(--#{$theme1}_color_3);
+            //  transition settings
+            transition-property: border-color,scale, color, background-color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+
+          }
+
+          &:not(:hover) {
+            cursor: pointer;
+            border: solid 3.5px var(--#{$theme1}_color_3);
+            color: var(--#{$theme1}_color_3);
+            background-color: var(--#{$theme1}_color_2);
+            scale: 1;
+            //  transition settings
+            transition-property: border-color,scale, color, background-color;
+            transition-duration: $trans_time;
+            transition-timing-function: ease-in-out;
+
+          }
+        }
+        
+        a{
+          text-decoration: none;
+        }
+
+        .user{
+          color: var(--#{$theme1}_color_3);
+          border: solid 3px;
+          border-radius: 10px;
+          padding: 5px;
           //  transition settings
           transition-property: color, ;
           transition-duration: $trans_time;
@@ -917,6 +1053,162 @@ $product_border_radius: 10px;
       }
     }
 
+    .signout_b {
+      & {
+        font-size: 1.135rem;
+        padding: 0.17rem;
+        margin: 0.517rem;
+        border-radius: 12px;
+        border: solid 3.5px;
+        color: var(--#{$theme1}_color_3);
+        background-color: var(--#{$theme1}_color_2);
+        scale: 1;
+        //  transition settings
+        transition-property: scale, border-color, color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+      }
+
+      &:hover {
+        cursor: pointer;
+        scale: 1.32;
+        color: var(--#{$theme1}_color_2);
+        background-color: var(--#{$theme1}_color_3);
+        //  transition settings
+        transition-property: scale, color, background-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
+      }
+
+      &:not(:hover) {
+        cursor: pointer;
+        border: solid 3.5px var(--#{$theme1}_color_3);
+        color: var(--#{$theme1}_color_3);
+        background-color: var(--#{$theme1}_color_2);
+        scale: 1;
+        //  transition settings
+        transition-property: scale, color, background-color;
+        transition-duration: $trans_time;
+        transition-timing-function: ease-in-out;
+
+      }
+    }
+.ShippingScreen{
+  
+  form{
+    & {
+      color: var(--#{$theme1}_color_3);
+      padding: 20px;
+      border-radius: 20px;
+      background-color: var(--#{$theme1}_color_2);
+      border: 5px var(--#{$theme1}_color_3) solid;
+      //  transition settings
+      transition-property: border-color, color, background-color;
+      transition-duration: $trans_time;
+      transition-timing-function: ease-in-out;
+    }
+
+    // children
+    .Address_button {
+      float: right;
+      // children
+          button {
+            & {
+              font-size: 1.135rem;
+              padding: 0.3rem;
+              border-radius: 12px;
+              border: solid 3.5px;
+              color: var(--#{$theme1}_color_3);
+              background-color: var(--#{$theme1}_color_2);
+              scale: 1;
+              //  transition settings
+              transition-property: scale, border-color, color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+            }
+
+            &:hover {
+              cursor: pointer;
+              scale: 1.32;
+              color: var(--#{$theme1}_color_2);
+              background-color: var(--#{$theme1}_color_3);
+              //  transition settings
+              transition-property: scale, color,border-color, background-color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+
+            }
+
+            &:not(:hover) {
+              cursor: pointer;
+              border: solid 3.5px var(--#{$theme1}_color_3);
+              color: var(--#{$theme1}_color_3);
+              background-color: var(--#{$theme1}_color_2);
+              scale: 1;
+              //  transition settings
+              transition-property: scale, color,border-color, background-color;
+              transition-duration: $trans_time;
+              transition-timing-function: ease-in-out;
+
+            }
+          }
+
+    }
+
+    .legend_fieldset {
+      padding: 10px;
+
+    // children
+      legend {
+        font-weight: bold;
+      }
+    }
+  }
+
+//  button {
+//     & {
+//       font-size: 1.135rem;
+//       padding: 0.17rem;
+//       margin: 0.517rem;
+//       border-radius: 12px;
+//       border: solid 3.5px;
+//       color: var(--#{$theme1}_color_3);
+//       background-color: var(--#{$theme1}_color_2);
+//       scale: 1;
+//       //  transition settings
+//       transition-property: scale, border-color, color;
+//       transition-duration: $trans_time;
+//       transition-timing-function: ease-in-out;
+//     }
+
+//     &:hover {
+//       cursor: pointer;
+//       scale: 1.132;
+//       color: var(--#{$theme1}_color_2);
+//       background-color: var(--#{$theme1}_color_3);
+//       //  transition settings
+//       transition-property: border-color,scale, color, background-color;
+//       transition-duration: $trans_time;
+//       transition-timing-function: ease-in-out;
+
+//     }
+
+//     &:not(:hover) {
+//       cursor: pointer;
+//       border: solid 3.5px var(--#{$theme1}_color_3);
+//       color: var(--#{$theme1}_color_3);
+//       background-color: var(--#{$theme1}_color_2);
+//       scale: 1;
+//       //  transition settings
+//       transition-property: border-color,scale, color, background-color;
+//       transition-duration: $trans_time;
+//       transition-timing-function: ease-in-out;
+
+//     }
+//   }
+  
+}
     footer {
       background: var(--#{$theme1}_color_2);
       color: var(--#{$theme1}_color_3);

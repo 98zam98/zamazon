@@ -4,6 +4,7 @@ import idprodSlice from './reducer/idprodSlice';
 import loadingSlice from './reducer/loadingSlice';
 import ploadingSlice from './reducer/ploadingSlice';
 import themeSlice from './reducer/themeSlice'
+import userSlice from './reducer/userSlice';
  
 const Store = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ const Store = configureStore({
         loading:loadingSlice.reducer,
         ploading:ploadingSlice.reducer,
         cart:cartSlice.reducer,
-        idprod:idprodSlice.reducer
+        idprod:idprodSlice.reducer,
+        user:userSlice.reducer
     },
 })
 export default Store;

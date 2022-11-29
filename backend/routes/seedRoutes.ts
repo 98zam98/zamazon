@@ -1,17 +1,17 @@
 import express from 'express';
 import Product from '../models/productModel';
 import data from '../data';
-// import User from '../models/userModel.js';
+import User from '../models/userModel';
 
 const seedRouter = express.Router();
 
 seedRouter.get('/', async (req, res) => {
   await Product.remove({});
   const createdProducts = await Product.insertMany(data.products);
-  // await User.remove({});
-  // const createdUsers = await User.insertMany(data.users);
+  await User.remove({});
+  const createdUsers = await User.insertMany(data.users);
   res.send({ createdProducts
-    // , createdUsers
+    , createdUsers
    });
 });
 export default seedRouter;

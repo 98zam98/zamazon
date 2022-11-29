@@ -17,6 +17,9 @@ const idprodSlice = createSlice({
         },
         dec: (s: idprod_state_type) => {
             s.id--;
+        },
+        clear: (s: idprod_state_type) => {
+            s.id=0;
         }
     }
 })

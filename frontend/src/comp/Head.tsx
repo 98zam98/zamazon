@@ -3,15 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import Cart_num from './Cart_num';
 import Theme_button from './Theme_button';
+import UserLink from './UserLink';
 
 const Head: FC = () => {
   return (
     <header className="App-header">
-      <Helmet>
-        <title>ZAMAZON</title>
-      </Helmet>
       <div className='links' >
         <Link to="/"><h1 className="name">ZAMAZON</h1></Link>
+        <UserLink/>
 
         <Link to="/cart">
           <div className="cart_link">

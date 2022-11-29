@@ -6,8 +6,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../state/hooks';
 import userSlice from '../state/reducer/userSlice';
 
-const Signin_screen: FC = () => {
-  
+const Signup_screen: FC = () => {
+
   // s here is short for state 
   const appuser = useAppSelector(s => s.user);
   // Products is used to render 
@@ -30,40 +30,64 @@ const Signin_screen: FC = () => {
 
   //   console.log("went back");
   // }
+  const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("")
+  const [ConfirmPassword, setConfirmPassword] = useState("")
   return (
     <>
-    <Helmet>
-      <title>Sign in</title>
-    </Helmet>
+      <Helmet>
+        <title>Sign up</title>
+      </Helmet>
 
-      <div className='Signin_screen' >
+      <div className='Signup_screen' >
         <form action="submit" onSubmit={
           async (e) => {
             e.preventDefault();
-            // console.log(Email);
-            // console.log(Password);
-            try {
-              const { data } = await axios.post("/api/users/signin", {
+            if (ConfirmPassword === Password) {
+
+              const newUser = {
+                "name": Name,
                 "email": Email,
                 "password": Password
-              });
-              dispatch(userSlice.actions.signin(data))
-              console.log(data);
+              }
+              // dispatch(userSlice.actions.signup(newUser))
+              console.log(newUser);
               //  state redux 
 
+              try {
+                const { data } = await axios.post("/api/users/signup", newUser);
+                dispatch(userSlice.actions.signin(data))
+                console.log(data);
+                //  state redux 
+  
+                console.log(appuser);
+                //  state redux    done
+  
+                nav(redirect || '/');
+  
+              } catch (error) {
+                alert("invalid");
+  
+              }
               console.log(appuser);
               //  state redux    done
 
               nav(redirect || '/');
-
-            } catch (error) {
-              alert("invalid");
-
+            }
+            else {
+              alert("not the same password")
             }
           }
         } >
+          <div className="legend_fieldset">
+            <fieldset>
+              <legend>What's your Name?</legend>
+              <input type="Name" name="Name" id="Name" required
+                onChange={e => setName(e.target.value)
+                } />
+            </fieldset>
+          </div>
           <div className="legend_fieldset">
             <fieldset>
               <legend>What's your email?</legend>
@@ -80,18 +104,26 @@ const Signin_screen: FC = () => {
               />
             </fieldset>
           </div>
-          <div className='signin_button' >
-            <button type="submit">sign in</button>
+          <div className="legend_fieldset">
+            <fieldset>
+              <legend>confirm your password</legend>
+              <input type="password" name="ConfirmPassword" id="ConfirmPassword" required
+                onChange={e => setConfirmPassword(e.target.value)}
+              />
+            </fieldset>
+          </div>
+          <div className='signup_button' >
+            <button type="submit">sign up</button>
           </div>
 
         </form>
         <div className='new_customer' >
           <span>new customer? </span>
-          <Link to={`/Signup?redirect=${redirect}`}>create your account</Link>
+          <Link to={`/signup?redirect=${redirect}`}>create your account</Link>
         </div>
       </div>
     </>
   )
 }
 
-export default Signin_screen
+export default Signup_screen
